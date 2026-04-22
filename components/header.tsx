@@ -1,6 +1,6 @@
 'use client'
 
-import { Bot, Trash2, Github } from 'lucide-react'
+import { Bot, MessageSquarePlus, Github } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { SettingsDialog } from './settings-dialog'
 import type { OllamaConfig } from '@/lib/types'
@@ -56,18 +56,18 @@ export function Header({
           </a>
         </Button>
         
-        {hasMessages && (
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={onClearChat}
-            className="text-muted-foreground hover:text-destructive"
-            title="Clear chat"
-          >
-            <Trash2 className="h-5 w-5" />
-            <span className="sr-only">Clear chat</span>
-          </Button>
-        )}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onClearChat}
+          disabled={!hasMessages}
+          className="gap-1.5 text-muted-foreground hover:text-foreground disabled:opacity-40"
+          title="Start a new chat"
+        >
+          <MessageSquarePlus className="h-4 w-4" />
+          <span className="hidden sm:inline">New chat</span>
+          <span className="sr-only sm:hidden">New chat</span>
+        </Button>
         
         <SettingsDialog 
           config={config} 
